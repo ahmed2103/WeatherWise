@@ -9,6 +9,6 @@ about_router = APIRouter(
     prefix="/about",
     tags=["about"],
 )
-from api.v1.views.about import *
-from api.v1.views.weather import *
-from api.v1.views.forecast import *
+from .about import *
+from .weather import *
+from .forecast import *

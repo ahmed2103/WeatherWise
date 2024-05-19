@@ -1,12 +1,20 @@
 #!/usr/bin/python
+"""module for the FastAPI app"""
+from models import storage
 from fastapi import FastAPI
-from api.v1.views import router, about_router
-
+from views import router, about_router
 
 
 app = FastAPI()
 app.include_router(router)
 app.include_router(about_router)
+
+
+@app.on_event("shutdown")
+async def shutdown_event():
+    """Shutdown event"""
+    storage.close()
+
 
 if __name__ == "__main__":
     import uvicorn
