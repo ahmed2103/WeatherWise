@@ -25,12 +25,10 @@ body {
   height: 10vh;
   position: relative;
 }
-#app-logo span {
-  background-position-y: center;
-  background-position-x: 0;
+#app-logo pre {
   margin: auto;
   display: block;
-  width: 50%;
+  width: max-content;
   top: 50%;
   left: 50%;
   position: absolute;
@@ -44,7 +42,7 @@ body {
   font-weight: bold;
   border-bottom: 5px solid;
   border-radius: 5px;
-  text-indent: 10%;
+  text-indent: 11vh;
 }
 
 header {
