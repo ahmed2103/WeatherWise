@@ -13,4 +13,4 @@ from api.v1.views.about import *
 from api.v1.views.weather import *
 from api.v1.views.forecast import *
 from api.v1.views.locations import *
-from api.v1.views.pre import *
+from api.v1.views.prefered_units import *

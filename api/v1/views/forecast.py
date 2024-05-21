@@ -9,7 +9,6 @@ from models.user import User
 from models.location import Location
 from fastapi import Request, Response
 
-
 url = 'https://api.openweathermap.org/data/2.5/forecast/'
 api_key = 'bacd9cc5a7f5a2ac5b557498678ed9d0'
 
@@ -23,8 +22,11 @@ def forecast(request: Request, response: Response,
     token = request.cookies.get('token')
     if token:
         user = storage.get(User, token)
-        units = user.prefered_units
-    params = {'q': city.capitalize() if country_code is None
+        try:
+            units = user.prefered_units
+        except AttributeError:
+            token = None
+        params = {'q': city.capitalize() if country_code is None
     else city.capitalize()+',' + country_code,
                 'units': 'imperial' if units == 'F' else 'metric',
               'appid': api_key}
@@ -46,14 +48,15 @@ def forecast(request: Request, response: Response,
         storage.new(user)
         storage.save()
         token = user.id
-        response.set_cookie(key='token', value=token
-                            , max_age=36*24*60*60)
+        response.set_cookie(key='token', value=token,
+                            max_age=31536000, expires=timedelta(seconds=31536000))
         cities = []
     else:
+        user.last_active = datetime.now()
         cities = [x[0] for x in storage.user_locations(user.id)]
     if cities is None or city not in cities:
-        location = Location(user_id=user.id, city_name=city,
-                            country_code=responserj.get('country'),
+        location = Location(user_id=user.id, city_name=city.capitalize(),
+                            country_code=responserj.get('city').get('country'),
                             latitude=responserj.get('city').get('coord').get('lat'),
                             longitude=responserj.get('city').get('coord').get('lon'))
         storage.new(location)
