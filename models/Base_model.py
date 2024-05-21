@@ -13,9 +13,9 @@ class BaseModel(Base):
 
     id = Column(String(60), primary_key=True, default=lambda: str(uuid4()))
     created_at = Column(DateTime, default=func.now())
-    updated_at = Column(DateTime, default=func.now(), onupdate=datetime.now())
+    updated_at = Column(DateTime, default=func.now(), onupdate=func.now())
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """Base model constructor"""
         self.id = str(uuid4())
         self.created_at = datetime.now()
