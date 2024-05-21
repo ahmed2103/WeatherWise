@@ -1,4 +1,14 @@
 #!/usr/bin/python
+#     fix for PYTHONPATH issue    #
+import sys
+from os import path as os_path
+sys.path.append(
+    os_path.join(
+        os_path.dirname(__file__),
+        '..', '..'
+        )
+    )
+# ------------------------------- #
 from fastapi import FastAPI
 from api.v1.views import router, about_router
 

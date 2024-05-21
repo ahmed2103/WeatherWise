@@ -1,0 +1,227 @@
+@font-face {
+  font-family: ArchitectsDaughter;
+  src: url(../assets/ArchitectsDaughter-Regular.ttf);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+}
+
+#app-logo {
+    width: 100vw;
+    height: 10vh;
+    position: relative;
+    span {
+        background-position-y: center;
+        background-position-x: 0;
+        margin: auto;
+        display: block;
+        width: 50%;
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        background-repeat: no-repeat;
+        background-image: url(../assets/favicon.svg);
+        background-size: 11vh 11vh;
+        text-align: center;
+        font-size: xxx-large;
+        font-family: ArchitectsDaughter;
+        font-weight: bold;
+        border-bottom: 5px solid;
+        border-radius: 5px;
+        text-indent: 10%;
+    }
+}
+
+header {
+    margin-bottom: 1vh;
+}
+
+main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+#tab-panes {
+    flex-grow: 1;
+    position: relative;
+    .tab-pane {
+        display: inline-block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 5px;
+        &.weather {
+            display: flex;
+            flex-direction: row;
+            div.left, div.right {
+                flex-grow: 1;
+            }
+            div.left {
+                margin-inline-end: 10px;
+                & > * {
+                    display: block;
+                    text-align: center;
+                }
+                & > img {
+                    width: 20vh;
+                    height: 20vh;
+                    margin: 10px;
+                }
+                span {
+                    text-align: center;
+                }
+                span:first-child {
+                    font-size: xx-large;
+                }
+                span:last-child {
+                    font-weight: 200;
+                    font-size: xxx-large;
+                }
+            }
+            div.right {
+                display: flex;
+                flex-direction: column;
+                border-left: 4px solid;
+                & > * {
+                    display: block;
+                }
+                br {
+                    flex-grow: 1;
+                }
+                span {
+                    text-indent: 20px;
+                    font-size: x-large;
+                    font-weight: 150;
+                }
+            }
+        }
+        &.forecast {
+            display: flex;
+            flex-direction: column;
+            max-height: 80%;
+            max-width: 90%;
+            div.up, div.down {
+                display: flex;
+                flex-direction: column;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+            }
+            div.up {
+                background-color: red;
+
+            }
+            div.down {
+                background-color: green;
+            }
+        }
+    }
+}
+
+#city-search-box {
+    padding: 5px;
+    height: 7vh;
+    display: flex;
+    flex-direction: row;
+    [name=toggle-unit] {
+        padding: 6px;
+        border: 2px dashed;
+        height: 100%;
+        display: inline-block;
+        label {
+            text-align: center;
+            display: inline-block;
+            height: 100%;
+
+            &:has(input:checked) {
+                border-bottom: 2px solid crimson;
+            }
+            &+ label {
+                margin-left: 6px;
+            }
+        }
+        input {
+            display: none;
+        }
+    }
+    input#inp-city {
+        border: 2px dashed;
+        display: inline-block;
+        height: 100%;
+        flex-grow: 1;
+        margin-inline-end: 4px;
+        padding: 4px;
+        font-size: medium;
+        font-weight: bold;
+        text-align: center;
+        font-family: arial;
+    }
+}
+
+#toggle-weather {
+    display: flex;
+    [name=toggle-weather] {
+        border-radius: 10px;
+        padding: 8px;
+        border: 3px dashed;
+        height: 7vh;
+        display: inline-block;
+        margin: auto;
+        label {
+            font-family: ArchitectsDaughter;
+            font-weight: bold;
+            font-size: large;
+            text-align: center;
+            display: inline-block;
+            height: 100%;
+            &:has(input:checked) {
+                border-bottom: 4px solid crimson;
+            }
+            &+ label {
+                margin-left: 20px;
+            }
+        }
+        input {
+            display: none;
+        }
+    }
+}
+
+footer {
+    hr {
+        border-radius: 5px;
+        width: 80%;
+        display: inline-block;
+        left: 10%;
+        position: absolute;
+        top: -2px;
+    }
+    width: 100vw;
+    position: relative;
+    bottom: 0;
+    a {
+        font-family: ArchitectsDaughter;
+        display: block;
+        margin: auto;
+        text-align: center;
+        font-size: large;
+        font-weight: bold;
+    }
+}

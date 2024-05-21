@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <title>WeatherWise</title>
+    <link rel="icon" href="assets/favicon.svg">
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <div id="app-logo">
+          <span>WeatherWise</span>
+        </div>
+      </header>
+      <main>
+        <div id="city-search-box">
+          <input id="inp-city" type="text" placeholder="City" v-model="inputCity"/>
+          <div name="toggle-unit">
+            <label for="C-unit">
+              <input type="radio" id="C-unit" name="toggle-unit" @click="selectedUnit = 'C'" checked>
+              °C
+            </label>
+            <label for="F-unit">
+              <input type="radio" id="F-unit" name="toggle-unit" @click="selectedUnit = 'F'">
+              °F
+            </label>
+          </div>
+        </div>
+        <div id="toggle-weather">
+          <div name="toggle-weather">
+            <label for="weather-type" @click="selectedWeatherType = 'weather'">
+              <input type="radio" id="weather-type" name="toggle-weather" checked>
+              Weather
+            </label>
+            <label for="forecast-type" @click="selectedWeatherType = 'forecast'">
+              <input type="radio" id="forecast-type" name="toggle-weather">
+              Forecast
+            </label>
+          </div>
+        </div>
+        <div id="tab-panes">
+          <div class="tab-pane weather" v-show="selectedWeatherType === 'weather'">
+            <div class="left" id="weather-overview">
+              <span id="time"> {{ current.hour }}</span>
+              <img :src="'assets/weather-icons/' + current.icon + '.svg'"/>
+              <span>{{ current.temp }}°</span>
+            </div>
+            <div class="right">
+              <span>{{ current.condition }}</span>
+              <br/>
+              <span>{{ current.city }}, {{ current.country }}</span>
+              <br/>
+              <span>{{ current.date }}</span>
+              <br/>
+              <span>Humidity: {{ current.humidity }}%</span>
+              <br/>
+              <span>Wind: {{ current.wind.speed }} KPH N</span>
+            </div>
+          </div>
+          <div class="tab-pane forecast" v-show="selectedWeatherType === 'forecast'">
+            <div class="up">
+            u
+            </div>
+            <div class="down">
+            d
+            </div>
+          </div>
+        </div>
+      </main>
+      <footer><hr><a @click.prevent="gotoAboutUsPage" href="#">About Us</a></footer>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.0.0-rc.1/vue.global.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
