@@ -55,3 +55,14 @@ class DBStorage:
         locations = self.__session.query(Location).filter_by(user_id=user_id).all()
         if locations:
             return ((location.city_name, location.country_code) for location in locations)
+
+
+    def delete_expired_users(self):
+        """Delete users that have been inactive for 14 days or more"""
+        from models.user import User
+        from datetime import datetime, timedelta
+        date_threshold = datetime.now() - timedelta(days=14)
+        expired_users = self.__session.query(User).filter(User.last_active < date_threshold).all()
+        for user in expired_users:
+            self.__session.delete(user)
+        self.__session.commit()

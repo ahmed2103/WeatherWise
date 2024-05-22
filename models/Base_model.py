@@ -1,7 +1,7 @@
 import models
 from uuid import uuid4
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, String, DateTime, func
+from sqlalchemy import Column, String, DateTime
 from datetime import datetime
 
 
@@ -12,8 +12,7 @@ class BaseModel(Base):
     __abstract__ = True
 
     id = Column(String(60), primary_key=True, default=lambda: str(uuid4()))
-    created_at = Column(DateTime, default=func.now())
-    updated_at = Column(DateTime, default=func.now(), onupdate=func.now())
+    created_at = Column(DateTime, default=lambda: datetime.now())
 
     def __init__(self, *args, **kwargs):
         """Base model constructor"""
