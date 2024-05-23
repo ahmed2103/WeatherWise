@@ -2,13 +2,13 @@
 
 from models import storage
 from fastapi import FastAPI
-from api.v1.views import router, about_router
+from api.v1.views import router, about_router, main_router
 
 
 app = FastAPI()
 app.include_router(router)
 app.include_router(about_router)
-
+app.include_router(main_router)
 
 @app.on_event("shutdown")
 async def shutdown_event():

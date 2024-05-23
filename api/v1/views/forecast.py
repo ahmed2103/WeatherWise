@@ -16,7 +16,8 @@ api_key = 'bacd9cc5a7f5a2ac5b557498678ed9d0'
 @router.get('/forecast')
 def forecast(request: Request, response: Response,
              city: str, country_code: Optional[str] = None,
-             time_type: Optional[str] = 'daily'):
+             time_type: Optional[str] = 'daily',
+             limit: Optional[str] = '7'):
     """Get forecast data"""
     units = 'C'
     token = request.cookies.get('token')
@@ -29,6 +30,7 @@ def forecast(request: Request, response: Response,
         params = {'q': city.capitalize() if country_code is None
     else city.capitalize()+',' + country_code,
                 'units': 'imperial' if units == 'F' else 'metric',
+                  'cnt': limit,
               'appid': api_key}
     final_url = url + time_type
     try:
