@@ -18,14 +18,14 @@ async def main(request: Request):
             responser = get(f'http://ip-api.com/json/{ip}').json()
         except Exception:
             responser = {'city': None, 'country_code': None}
-    city = responser.get('city')
-    country_code = responser.get('country_code')
-    params = {'q': city + ',' + country_code,
+    longi = responser.get('longitude')
+    lati = responser.get('latitude')
+    params = {'lat': lati, 'lon': longi,
               'appid': 'bacd9cc5a7f5a2ac5b557498678ed9d0',
                 'units': 'metric'}
     try:
         responser_w = get('https://api.openweathermap.org/data/2.5/weather', params=params).json()
     except Exception:
         responser_w = {'main': {'temp': None}}
-    return templates.TemplateResponse("index.html", {"request": request, "city": city, "country_code": country_code, "temp": responser_w.get('main').get('temp'),
+    return templates.TemplateResponse("index.html", {"request": request, "city": responser_w.get('name'), "country": responser.get('country_name'), "temp": responser_w.get('main').get('temp'),
                                                      "description": responser_w.get('weather')[0].get('description')})
