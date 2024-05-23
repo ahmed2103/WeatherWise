@@ -58,7 +58,7 @@
             </label>
             <label
               for="forecast-type"
-              @click="selectedWeatherType = 'forecast'"
+              @click="selectedWeatherType = 'forecast'; fetchForecast();"
             >
               <input type="radio" id="forecast-type" name="toggle-weather" />
               Forecast
@@ -118,6 +118,21 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.0.0-rc.1/vue.global.js"></script>
+    <script>
+      window.initialInfo = {
+        city: "{{city}}",
+        country: "{{country}}",
+        temp: {{temp}},
+        description: "{{description}}",
+        icon: "{{icon}}",
+        humidity: {{humidity}},
+        wind: {
+          speed: {{wind.speed}},
+            deg: {{wind.deg}}
+        },
+        timezone: {{timezone}}
+      };
+    </script>
     <script src="js/main.js"></script>
   </body>
 </html>
