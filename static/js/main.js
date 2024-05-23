@@ -1,6 +1,7 @@
-const API_PORT = "8000",
-  API_URL = `${document.location.protocol}//${document.location.hostname}:${API_PORT}`,
-  IP_API = `http://for-us.tech`;
+// const API_PORT = "8000",
+//   API_URL = `${document.location.protocol}//${document.location.hostname}:${API_PORT}`,
+//   IP_API = `http://for-us.tech`;
+const API_URL = document.location.origin;
 
 // response.dt + 000 ++ res.timezone
 
@@ -83,7 +84,7 @@ const app = Vue.createApp({
         `${API_URL}/api/v1/forecast?` +
           new URLSearchParams({
             city: this.inputCity,
-            time_type: "daily",
+            time_type: "hourly",
           })
       );
       res = await res.json();
@@ -106,7 +107,7 @@ const app = Vue.createApp({
         `${API_URL}/api/v1/forecast?` +
           new URLSearchParams({
             city: this.inputCity,
-            time_type: "daily",
+            time_type: "weekly",
           })
       );
       res = await res.json();
