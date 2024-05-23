@@ -12,6 +12,7 @@ const app = Vue.createApp({
 
     return {
       // inputCity: (await fetch("http://for-us.tech")).json().city,
+      msg: "Please select a City",
       inputCity: "",
       selectedWeatherType: "weather",
       selectedUnit: "C",
@@ -45,6 +46,8 @@ const app = Vue.createApp({
         alert("Please select a City");
         return;
       }
+      this.infoReady = false;
+      this.msg = "Please wait...";
       /* fetch weather */
       var res = await fetch(
         `${API_URL}/api/v1/weather?` +
@@ -53,6 +56,11 @@ const app = Vue.createApp({
           })
       );
       res = await res.json();
+      if (res.cod === "404") {
+        alert(`${this.inputCity}: is not a valid City`);
+        this.msg = "Please select a City";
+        return;
+      }
       var timezone = res.timezone;
       var time = moment(res.dt * 1000 + timezone);
       this.current = {
