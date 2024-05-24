@@ -16,8 +16,7 @@ api_key = 'bacd9cc5a7f5a2ac5b557498678ed9d0'
 @router.get('/forecast')
 def forecast(request: Request, response: Response,
              city: str, country_code: Optional[str] = None,
-             time_type: Optional[str] = 'daily',
-             limit: Optional[str] = '7'):
+             time_type: Optional[str] = 'daily'):
     """Get forecast data"""
     units = 'C'
     token = request.cookies.get('token')
@@ -27,15 +26,15 @@ def forecast(request: Request, response: Response,
             units = user.prefered_units
         except AttributeError:
             token = None
-        params = {'q': city.capitalize() if country_code is None
-    else city.capitalize()+',' + country_code,
-                'units': 'imperial' if units == 'F' else 'metric',
-                  'cnt': limit,
-              'appid': api_key}
+    params = {'q': city if country_code is None else city+',' + country_code,
+            'units': 'imperial' if units == 'F' else 'metric',
+          'appid': api_key}
     final_url = url + time_type
     try:
         responser = get(url, params=params)
     except Exception as e:
+        from traceback import print_exc
+        print_exc()
         return {'error': e}
     if responser.status_code == 404:
         return {'error': 'City not found'}

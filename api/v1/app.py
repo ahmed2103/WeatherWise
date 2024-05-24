@@ -1,11 +1,13 @@
 #!/usr/bin/python3
-
+""""module for fastapi app"""
 from models import storage
 from fastapi import FastAPI
 from api.v1.views import router, about_router, main_router
+from fastapi.staticfiles import StaticFiles
 
 
 app = FastAPI()
+app.mount('/static', StaticFiles(directory='static'), name='static')
 app.include_router(router)
 app.include_router(about_router)
 app.include_router(main_router)
@@ -22,4 +24,4 @@ async def startup_event():
 
 if __name__ == "__main__":
     from uvicorn import run
-    run(app, host="0.0.0.0", port=8000)
+    run(app, host="0.0.0.0", port=8080)
