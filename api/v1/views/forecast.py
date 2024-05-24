@@ -37,7 +37,7 @@ def forecast(request: Request, response: Response,
         print_exc()
         return {'error': e}
     if responser.status_code == 404:
-        return {'error': 'City not found'}
+        return responser.json()
     if responser.status_code == 401:
         return {'error': 'Invalid 3rd party API key'}
     try:
