@@ -3,7 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <title>WeatherWise</title>
-    <link rel="icon" href="static/assets/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="static/assets/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="static/assets/favicon.svg" />
     <link rel="stylesheet" href="static/css/main.css" />
   </head>
   <body>
@@ -29,7 +30,7 @@
                 type="radio"
                 id="C-unit"
                 name="toggle-unit"
-                @click="selectedUnit = 'C'"
+                @click="setSelectedUnit('C')"
                 checked
               />
               °C
@@ -39,7 +40,7 @@
                 type="radio"
                 id="F-unit"
                 name="toggle-unit"
-                @click="selectedUnit = 'F'"
+                @click="setSelectedUnit('F')"
               />
               °F
             </label>
@@ -58,7 +59,7 @@
             </label>
             <label
               for="forecast-type"
-              @click="selectedWeatherType = 'forecast'; fetchForecast();"
+              @mouseup="selectedWeatherType = 'forecast'; fetchForecast();"
             >
               <input type="radio" id="forecast-type" name="toggle-weather" />
               Forecast
@@ -72,7 +73,9 @@
           >
             <div class="left" id="weather-overview">
               <span id="time"> {{ '{{current.time}}' }}</span>
-              <img :src="'static/assets/weather-icons/' + current.icon + '.svg'" />
+              <img
+                :src="'static/assets/weather-icons/' + current.icon + '.svg'"
+              />
               <span>{{ '{{convertUnit(current.temp)}}' }}°</span>
             </div>
             <div class="right">
@@ -94,15 +97,21 @@
             <div class="up">
               <div class="col" v-for="item in dailyForecast">
                 <span id="time"> {{ '{{item.time}}' }}</span>
-                <img :src="'static/assets/weather-icons/' + item.icon + '.svg'" />
+                <img
+                  :src="'static/assets/weather-icons/' + item.icon + '.svg'"
+                />
                 <span>{{ '{{convertUnit(item.temp)}}' }}°</span>
               </div>
             </div>
             <div class="down">
-              <div class="col" v-for="item in weeklyForecast">
-                <span id="time"> {{ '{{item.time}}' }}</span>
-                <img :src="'static/assets/weather-icons/' + item.icon + '.svg'" />
-                <span>{{ '{{ convertUnit(item.temp) }}' }}°</span>
+              <div class="hcenter">
+                <div class="col" v-for="item in weeklyForecast">
+                  <span id="time"> {{ '{{item.time}}' }}</span>
+                  <img
+                    :src="'static/assets/weather-icons/' + item.icon + '.svg'"
+                  />
+                  <span>{{ '{{ convertUnit(item.temp) }}' }}°</span>
+                </div>
               </div>
             </div>
           </div>

@@ -9,6 +9,12 @@
   box-sizing: border-box;
 }
 
+*:not(input) {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  user-select: none !important;
+}
+
 body {
   width: 100vw;
   height: 100vh;
@@ -139,7 +145,9 @@ main {
       max-width: 90%;
       // width: 90%;
       div.down {
-        margin-top: 4px;
+        width: max-content;
+        margin: auto;
+        margin-top: 6px;
       }
       div.up,
       div.down {
@@ -157,6 +165,13 @@ main {
           border: 3px solid #f1f1f1; /* Creates padding around scroll thumb */
         }
 
+        border: 2px dashed crimson;
+        border-radius: 10px;
+        .col {
+          margin-top: 0 !important;
+        }
+        // &,
+        // div.hcenter {
         align-items: center;
         // padding-bottom: 5px;
         display: flex;
@@ -164,10 +179,12 @@ main {
         overflow-x: auto;
         overflow-y: hidden;
         flex-direction: row;
-        border: 2px dashed crimson;
-        border-radius: 10px;
+        // }
+        // div.hcenter {
+        //   margin: auto;
+        // }
         div.col {
-          margin: auto;
+          // margin: auto;
           display: inline-block;
           flex-direction: column;
           padding: 8px;

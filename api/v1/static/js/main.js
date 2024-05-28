@@ -104,33 +104,39 @@ const app = Vue.createApp({
           `${API_URL}/api/v1/forecast?` +
             new URLSearchParams({
               city: this.current.city,
-              time_type: "hourly",
             })
         );
         res = await res.json();
+        var today = moment(res.list[0].dt * 1000 + timezone).format("ddd");
         this.dailyForecast.length = 0;
-        for (let i of res.list) {
-          this.dailyForecast.push({
-            time: moment(i.dt * 1000 + timezone).format("h:mm A"),
-            temp: i.main.temp,
-            condition: i.weather[0].description,
-            humidity: i.main.humidity,
-            wind: {
-              speed: i.wind.speed,
-              deg: i.wind.deg,
-            },
-            icon: i.weather[0].icon,
-          });
-        }
+        res.list.every((i, idx) => {
+          if (moment(i.dt * 1000 + timezone).format("ddd") === today) {
+            this.dailyForecast.push({
+              time: moment(i.dt * 1000 + timezone).format("h:mm A"),
+              temp: i.main.temp,
+              condition: i.weather[0].description,
+              humidity: i.main.humidity,
+              wind: {
+                speed: i.wind.speed,
+                deg: i.wind.deg,
+              },
+              icon: i.weather[0].icon,
+            });
+            return true;
+          } else {
+            res.list.slice(idx);
+            return false;
+          }
+        });
         // weekly
-        res = await fetch(
-          `${API_URL}/api/v1/forecast?` +
-            new URLSearchParams({
-              city: this.current.city,
-              time_type: "weekly",
-            })
-        );
-        res = await res.json();
+        // res = await fetch(
+        //   `${API_URL}/api/v1/forecast?` +
+        //     new URLSearchParams({
+        //       city: this.current.city,
+        //       time_type: "weekly",
+        //     })
+        // );
+        // res = await res.json();
         this.weeklyForecast.length = 0;
         var last_day = undefined,
           day;
@@ -155,6 +161,16 @@ const app = Vue.createApp({
     convertUnit(temp) {
       if (this.selectedUnit === "F") return ((temp * 9) / 5 + 32).toFixed(2);
       else return temp;
+    },
+    setSelectedUnit(unit) {
+      if (this.selectedUnit === unit) return;
+      fetch(`${API_URL}/api/v1/prefered_units?units=${unit}`, {
+        method: "PUT",
+        headers: {
+          accept: "application/json",
+        },
+      });
+      this.selectedUnit = unit;
     },
   },
   computed: {},
