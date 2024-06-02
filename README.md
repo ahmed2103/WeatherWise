@@ -1,6 +1,6 @@
 # WeatherWise
 
-A brief description of what AwesomeProject is and what it does.
+WeatherWise is a Single Page Application (SPA) designed to provide accurate and up-to-date weather information. It features a user-friendly interface and is accessible on multiple platforms.
 
 ## Table of Contents
 
@@ -9,7 +9,7 @@ A brief description of what AwesomeProject is and what it does.
 - [Installation](#installation)
 - [Usage](#usage)
 - [License](#license)
-- [Bug](#bug)
+- [Bugs](#bugs)
 - [Contact](#contact)
 
 ## About the Project
@@ -23,7 +23,7 @@ WeatherWise is designed to provide accurate and up-to-date weather information t
 
 ## Installation
 
-Step-by-step instructions on how to install and set up the project.
+Follow these steps to install and set up the project.
 
 ### Prerequisites
 
@@ -44,24 +44,13 @@ Step-by-step instructions on how to install and set up the project.
 
 3. Install dependencies:
     ```sh
-pip install sqlalchemy
+    pip install sqlalchemy
     ```
 
 4. Start the application:
     ```sh
-python3 app.py
+    python3 app.py
     ```
-
-## Usage
-
-Instructions on how to use the project.
-
-1. Start the application:
-    ```sh
-python3 app.py
-    ```
-
-2. Open your browser and navigate to `http://localhost:8080`.
 
 ## Usage
 
@@ -69,8 +58,8 @@ Instructions on how to use WeatherWise.
 
 1. Start the application:
     ```sh
-python3 app.py
-```
+    python3 app.py
+    ```
 
 2. Open your browser and navigate to `http://localhost:8080`.
 
@@ -82,16 +71,26 @@ Here's an example of how to get weather information for Cairo:
 
 1. Open the application.
 2. Enter "Cairo" in the search bar.
-3. View the current weather and forecast for cairo.
+3. View the current weather and forecast for Cairo.
 
 ## Authors
-Ahmed Fathi - [Github](https://github.com/ahmed2103) 
-Ibrahem Essam - [Github](https://github.com/ibrahemesam)
+
+- Ahmed Fathi - [GitHub](https://github.com/ahmed2103)
+- Ibrahem Essam - [GitHub](https://github.com/ibrahemesam)
 
 ## Bugs
-As there are 3rd part dependencies from openweather api we dont guarantee to get weather data all the time.
 
+As there are third-party dependencies from OpenWeather API, we cannot guarantee the availability of weather data at all times.
 
-## license
+## License
 
-Public Domain. No copy write protection.
+This project is in the public domain. No copyright protection.
+
+## Contact
+
+For any questions or inquiries, please contact:
+
+- Ahmed Fathi - [ahmed@example.com](mailto:ahmed@example.com)
+- Ibrahem Essam - [ibrahem@example.com](mailto:ibrahem@example.com)
+
+Project Link: [https://github.com/ahmed2103/WeatherWise](https://github.com/ahmed2103/WeatherWise)
