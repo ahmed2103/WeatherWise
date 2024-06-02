@@ -86,7 +86,7 @@ This project is in the public domain. No copyright protection.
 
 For any questions or inquiries, please contact:
 
-- Ahmed Fathi - [bekoahmed20@gmail.com](mailto:ahmed@example.com)
-- Ibrahem Essam - [???](mailto:ibrahem@example.com)
+- Ahmed Fathi - [bekoahmed20@gmail.com](mailto:bekoahmed20@gmail.com)
+- Ibrahem Essam - [ibrahem@duck.com](mailto:ibrahem@duck.com)
 
 Project Link: [https://github.com/ahmed2103/WeatherWise](https://github.com/ahmed2103/WeatherWise)
