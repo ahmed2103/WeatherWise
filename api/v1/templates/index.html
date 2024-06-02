@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="static/css/main.css" />
   </head>
   <body>
-    <div id="app">
+    <div id="app" v-cloak>
       <header>
         <div id="app-logo">
           <pre>WeatherWise   </pre>
@@ -31,7 +31,8 @@
                 id="C-unit"
                 name="toggle-unit"
                 @click="setSelectedUnit('C')"
-                checked
+                value="C"
+                v-model="selectedUnit"
               />
               °C
             </label>
@@ -41,6 +42,8 @@
                 id="F-unit"
                 name="toggle-unit"
                 @click="setSelectedUnit('F')"
+                value="F"
+                v-model="selectedUnit"
               />
               °F
             </label>
@@ -85,9 +88,21 @@
               <br />
               <span>{{ '{{current.date}}' }}</span>
               <br />
-              <span>Humidity: {{ '{{current.humidity}}' }}%</span>
+              <span
+                >Humidity: <strong>{{ '{{current.humidity}}' }}</strong>%</span
+              >
               <br />
-              <span>Wind: {{ '{{current.wind.speed}}' }} KPH N</span>
+              <span
+                >Wind: <strong>{{ '{{current.wind.speed}}' }} KPH</strong></span
+              >
+              <br />
+              <span
+                >Min
+                <strong>{{ '{{convertUnit(current.temp_min)}}' }}°</strong>, Max
+                <strong
+                  >{{ '{{convertUnit(current.temp_max)}}' }}°</strong
+                ></span
+              >
             </div>
           </div>
           <div
@@ -122,7 +137,9 @@
       </main>
       <footer>
         <hr />
-        <a @click.prevent="gotoAboutUsPage" href="#">About Us</a>
+        <a @click.prevent="gotoAboutUsPage" href="#" style="font-weight: bold"
+          >About Us</a
+        >
       </footer>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
@@ -132,6 +149,8 @@
         city: "{{city}}",
         country: "{{country}}",
         temp: {{temp}},
+        temp_min: {{temp_min}},
+        temp_max: {{temp_max}},
         description: "{{description}}",
         icon: "{{icon}}",
         humidity: {{humidity}},
@@ -139,7 +158,8 @@
           speed: {{wind.speed}},
             deg: {{wind.deg}}
         },
-        timezone: {{timezone}}
+        timezone: {{timezone}},
+        fav_unit: "{{fav_unit}}",
       };
     </script>
     <script src="static/js/main.js"></script>

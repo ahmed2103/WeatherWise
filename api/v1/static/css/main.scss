@@ -2,11 +2,30 @@
   font-family: ArchitectsDaughter;
   src: url(../assets/ArchitectsDaughter-Regular.ttf);
 }
+$text-color: white;
 
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  background-color: transparent;
+  color: $text-color;
+}
+
+input[type="text"] {
+  outline: none;
+  &::placeholder {
+    color: rgba($text-color, 0.7);
+  }
+}
+
+button {
+  &:hover {
+    background-color: rgba(grey, 0.3);
+  }
+  &:active {
+    background-color: rgba(grey, 0.5);
+  }
 }
 
 *:not(input) {
@@ -18,6 +37,18 @@
 body {
   width: 100vw;
   height: 100vh;
+  background-image: url(../assets/Starry\ Nebula\ 219.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center;
+}
+
+img[src*="weather-icons"] {
+  filter: invert(1);
+}
+
+[v-cloak] {
+  // visibility: hidden;
 }
 
 #app {
@@ -97,12 +128,15 @@ main {
         flex-grow: 1;
       }
       div.left {
+        display: flex;
+        flex-direction: column;
         margin-inline-end: 10px;
         & > * {
           display: block;
           text-align: center;
         }
         & > img {
+          flex-grow: 1;
           width: 20vh;
           height: 20vh;
           margin: 10px;
@@ -237,7 +271,8 @@ main {
     border: 2px dashed;
     height: 100%;
     display: inline-block;
-    label {
+    & > label {
+      cursor: pointer;
       text-align: center;
       display: inline-block;
       height: 100%;
@@ -269,6 +304,7 @@ main {
 
 #toggle-weather {
   display: flex;
+  margin-top: 10vh;
   [name="toggle-weather"] {
     border-radius: 10px;
     padding: 8px;
@@ -276,7 +312,8 @@ main {
     height: 7vh;
     display: inline-block;
     margin: auto;
-    label {
+    & > label {
+      cursor: pointer;
       font-family: ArchitectsDaughter;
       font-weight: bold;
       font-size: large;

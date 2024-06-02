@@ -24,7 +24,7 @@ const app = Vue.createApp({
       msg: "Please select a City",
       inputCity: "",
       selectedWeatherType: "weather",
-      selectedUnit: "C",
+      selectedUnit: initialInfo.fav_unit || "C",
       infoReady: true,
       // dailyForecast: [],
       // weeklyForecast: [],
@@ -32,6 +32,8 @@ const app = Vue.createApp({
         timezone: initialInfo.timezone,
         time: initialInfo.time.format("h:mm A"),
         temp: initialInfo.temp,
+        temp_min: initialInfo.temp_min,
+        temp_max: initialInfo.temp_max,
         condition: initialInfo.description,
         city: initialInfo.city,
         country: initialInfo.country,
@@ -77,6 +79,8 @@ const app = Vue.createApp({
         timezone: timezone,
         time: time.format("h:mm A"),
         temp: res.main.temp,
+        temp_min: res.main.temp_min,
+        temp_max: res.main.temp_max,
         condition: res.weather[0].description,
         city: res.name,
         country: res.sys.country,
@@ -159,8 +163,8 @@ const app = Vue.createApp({
       }
     },
     convertUnit(temp) {
-      if (this.selectedUnit === "F") return ((temp * 9) / 5 + 32).toFixed(2);
-      else return temp;
+      if (this.selectedUnit === "F") temp = ((temp * 9) / 5 + 32).toFixed(2);
+      return Math.round(temp); // round the result to intiger value
     },
     setSelectedUnit(unit) {
       if (this.selectedUnit === unit) return;
