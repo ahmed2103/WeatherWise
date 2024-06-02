@@ -1,4 +1,4 @@
-# AwesomeProject
+# WeatherWise
 
 A brief description of what AwesomeProject is and what it does.
 
