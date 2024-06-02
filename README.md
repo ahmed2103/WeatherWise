@@ -25,10 +25,6 @@ WeatherWise is designed to provide accurate and up-to-date weather information t
 
 Follow these steps to install and set up the project.
 
-### Prerequisites
-
-- Node.js (>=14.0.0)
-- npm (>=6.0.0)
 
 ### Steps
 
