@@ -143,7 +143,9 @@ const app = Vue.createApp({
         // res = await res.json();
         this.weeklyForecast.length = 0;
         var last_day = undefined,
-          day;
+          day; /*,
+          temp_min,
+          temp_max = In;*/
         for (let i of res.list) {
           day = moment(i.dt * 1000 + timezone).format("ddd");
           if (day === last_day) continue;
