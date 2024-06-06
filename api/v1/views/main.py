@@ -32,6 +32,8 @@ async def main(request: Request):
         "city": responser_w.get('name'),
         "country": responser.get('country_name'),
         "temp": responser_w.get('main').get('temp'),
+        "temp_min": responser_w.get('main').get('temp_min'),
+        "temp_max": responser_w.get('main').get('temp_max'),
         "description": responser_w.get('weather')[0].get('description'),
         'icon': responser_w['weather'][0]['icon'],
         'humidity': responser_w['main']['humidity'],
